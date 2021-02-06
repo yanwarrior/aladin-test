@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}My Carts{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cart in carts %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ cart.product.name }}</td>
+              <td>Rp. {{ cart.product.price }}</td>
+              <td>{{ cart.quantity }}</td>
+              <td>Rp. {{ cart.total }}</td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <a href="{% url 'ecommerce:cart_edit' cart_id=cart.pk %}" class="btn btn-sm btn-dark">Edit</a>
+                  <a href="{% url 'ecommerce:cart_delete' cart_id=cart.pk %}" class="btn btn-sm btn-outline-dark">Remove</a>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="6" class="text-right">
+              <h4>Total Rp. {{ request.session.total.total__sum }}</h4>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6" class="text-right">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="{% url 'ecommerce:product_list' %}" class="btn btn-outline-primary">Continue shopping</a>
+                <a href="{% url 'ecommerce:cart_reset' %}" class="btn btn-outline-dark">Remove All</a>
+                <a href="{% url 'ecommerce:order_create' %}" class="btn btn-primary">Checkout</a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-xl-12 d-flex justify-content-center">
+      {% include 'pagination.html' with page=carts %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load ecommerce_tags %}
+<nav class="navbar navbar-expand-lg navbar-dark mb-5 shadow bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'ecommerce:product_list' %}">Simple eCommerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'ecommerce:product_list' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'ecommerce:order_track' %}">Tracking my orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'ecommerce:cart_list' %}">My Carts ({% total_carts request.session.session_number %})</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

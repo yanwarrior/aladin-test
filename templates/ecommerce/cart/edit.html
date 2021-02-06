@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Cart{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <h4 class="card-title">Update Cart</h4>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-sm btn-primary">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ cart.product.name }}</h5>
+          <small>Rp. {{ cart.product.price }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

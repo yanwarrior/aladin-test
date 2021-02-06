@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout {% endblock %}
+
+{% block content %}
+  {% if order %}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card shadow">
+          <div class="card-body">
+            <p class="card-text">You have successfully checkout, copy your order number to find out your order.</p>
+            <p>{{ order.order_number }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="row">
+      <div class="col-md-12">
+        <form method="post">
+          {{ form.as_p }}
+          {% csrf_token %}
+          <button class="btn btn-sm btn-primary" type="submit">Finish</button>
+        </form>
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock %}

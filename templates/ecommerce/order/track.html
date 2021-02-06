@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Order Tracking{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      <form action="{% url 'ecommerce:order_track' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-sm">Get order</button>
+      </form>
+      {% if order %}
+      <div class="card shadow">
+        <div class="card-body">
+          <h4 class="card-title">{{ order.order_number }}</h4>
+          <p>Total: Rp. {{ order.total }}</p>
+          <p>Paid: {{ order.is_paid }}</p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

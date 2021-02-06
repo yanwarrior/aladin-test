@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Cart{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ cart.product.name }}</h5>
+          <p>Are you sure you want to delete <strong class="text-danger">{{ cart.product.nae }}</strong> from your cart?</p>
+          <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-outline-primary btn-sm">Remove</button>
+            <a href="{% url 'ecommerce:cart_list' %}" class="btn btn-dark btn-sm">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
